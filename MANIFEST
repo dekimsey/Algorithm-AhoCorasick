@@ -1,0 +1,11 @@
+Changes
+MANIFEST
+META.yml # Will be created by "make dist"
+Makefile.PL
+README
+lib/Algorithm/AhoCorasick.pm
+lib/Algorithm/AhoCorasick/SearchMachine.pm
+t/00-load.t
+t/SearchMachine.t
+t/find_all.t
+t/find_first.t
