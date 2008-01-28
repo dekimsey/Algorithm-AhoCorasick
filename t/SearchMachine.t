@@ -2,9 +2,18 @@
 
 use strict;
 use warnings;
-use Test::More tests => 24;
+
+# Just to simplify using Config - the module might very well work even
+# on older versions, but really, does anybody need them?
+require 5.005_640;
+
+# Tests using Unicode strings crash on perl 5.6.2 .
+use Config;
+use Test::More tests => (($Config{api_version} < 8) ? 21 : 25);
 
 use Algorithm::AhoCorasick::SearchMachine;
+
+is($Config{api_revision}, 5);
 
 my $expected_pos;
 my $expected_keyword;
@@ -66,11 +75,13 @@ $rv = $machine->feed("Un chasseur qui sache chasser ne chase jamais sans son chi
 ok(!defined($rv));
 is($counter, 6);
 
-use utf8;
+if ($Config{api_version} >= 8) {
+    use utf8;
 
-$machine = Algorithm::AhoCorasick::SearchMachine->new("pře");
-$expected_pos = 12;
-$expected_keyword = "pře";
-$machine->feed("skákal pes, přes oves", \&check);
+    $machine = Algorithm::AhoCorasick::SearchMachine->new("pře");
+    $expected_pos = 12;
+    $expected_keyword = "pře";
+    $machine->feed("skákal pes, přes oves", \&check);
+}
 
 
