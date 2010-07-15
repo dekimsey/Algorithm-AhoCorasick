@@ -119,6 +119,7 @@ package Algorithm::AhoCorasick::Node;
 
 use strict;
 use warnings;
+use Scalar::Util qw(weaken);
 
 sub new {
     my $class = shift;
@@ -126,6 +127,7 @@ sub new {
     my $self = { @_ };
     $self->{results} = { };
     $self->{transitions} = { };
+    weaken $self->{parent} if $self->{parent};
     return bless $self, $class;
 }
 
@@ -153,7 +155,8 @@ sub failure {
     my $self = shift;
 
     if (@_) {
-	$self->{failure} = $_[0];
+        $self->{failure} = $_[0];
+        weaken $self->{failure};
     }
 
     return $self->{failure};

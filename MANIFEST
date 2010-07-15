@@ -6,6 +6,7 @@ README
 lib/Algorithm/AhoCorasick.pm
 lib/Algorithm/AhoCorasick/SearchMachine.pm
 t/00-load.t
+t/circular-ref.t
 t/SearchMachine.t
 t/find_all.t
 t/find_first.t
