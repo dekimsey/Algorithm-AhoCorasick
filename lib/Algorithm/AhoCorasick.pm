@@ -16,7 +16,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw(
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
-our $VERSION = '0.02';
+our $VERSION = '0.02_1';
 
 sub find_first {
     my $text = shift;
