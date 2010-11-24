@@ -2,18 +2,19 @@ package Algorithm::AhoCorasick::SearchMachine;
 
 use strict;
 use warnings;
+use Carp;
 
 sub new {
     my $class = shift;
 
     if (!@_) {
-	die "no keywords";
+	croak "no keywords";
     }
 
     my %keywords;
     foreach (@_) {
 	if (!defined($_) || ($_ eq '')) {
-	    die "empty keyword";
+	    croak "empty keyword";
 	}
 
 	$keywords{$_} = 1;
@@ -135,7 +136,7 @@ sub char {
     my $self = shift;
 
     if (!exists($self->{char})) {
-	die "root node has no character";
+	croak "root node has no character";
     }
 
     return $self->{char};
@@ -145,7 +146,7 @@ sub parent {
     my $self = shift;
 
     if (!exists($self->{parent})) {
-	die "root node has no parent";
+	croak "root node has no parent";
     }
 
     return $self->{parent};
